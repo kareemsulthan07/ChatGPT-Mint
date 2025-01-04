@@ -69,6 +69,29 @@ function claudeAIDecreaseCodeBlocksWidth() {
 
 
 document.addEventListener('keydown', (event) => {
+
+    if (event.key === 'PageUp' || event.key === 'PageDown') {
+        // scrollTop is the current scroll position of the container
+        // clientHeight is the container's visible height
+
+        if (event.key === 'PageUp') {
+            let scroll = document.querySelector('div[class^="react-scroll-to-bottom"]').firstChild;
+            scroll.scrollTo({
+                top: scroll.scrollTop - scroll.clientHeight,
+                // behavior: 'smooth'
+            });
+        }
+        else if (event.key === 'PageDown') {
+            let scroll = document.querySelector('div[class^="react-scroll-to-bottom"]').firstChild;
+            scroll.scrollTo({
+                top: scroll.scrollTop + scroll.clientHeight,
+                // behavior: 'smooth'
+            });
+        }
+
+        return;
+    }
+
     if (event.ctrlKey) {
         if (event.key === '[') {
             if (document.location.origin == 'https://chatgpt.com') {
